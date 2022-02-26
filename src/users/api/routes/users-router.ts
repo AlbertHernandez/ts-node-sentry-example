@@ -5,7 +5,6 @@ const usersRouter = new Router({
   prefix: "/users",
 });
 
-usersRouter.get("/", handleRequest("usersGetController"));
 usersRouter.post("/", handleRequest("usersPostController"));
 
 export { usersRouter };

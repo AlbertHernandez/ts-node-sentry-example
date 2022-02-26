@@ -1,7 +1,7 @@
 import { Middleware } from "koa";
-import * as Sentry from "@sentry/node";
 import { AwilixContainer } from "awilix";
 import { Logger } from "../../business/logger";
+import { ErrorTracker } from "../../business/error-tracker";
 
 export const errorHandlerMiddleware: Middleware = async (ctx, next) => {
   const scopedContainer: AwilixContainer = ctx.state.container;
@@ -13,13 +13,15 @@ export const errorHandlerMiddleware: Middleware = async (ctx, next) => {
     ctx.status = 500;
     ctx.body = "Internal Server Error";
     if (error instanceof Error) {
+      const errorTracker =
+        scopedContainer.resolve<ErrorTracker>("errorTracker");
       logger.error({
         message: error.message,
         context: {
           stack: error.stack,
         },
       });
-      Sentry.captureException(error);
+      errorTracker.trackError(error);
     }
   }
 };

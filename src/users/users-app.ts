@@ -11,7 +11,6 @@ import {
   requestLoggerMiddleware,
   sentryScopeMiddleware,
 } from "./api/middlewares";
-import { initSentry } from "./modules/sentry/init-sentry";
 import bodyParser from "koa-bodyparser";
 
 export class UsersApp {
@@ -21,7 +20,6 @@ export class UsersApp {
   httpServer?: http.Server;
 
   constructor() {
-    initSentry();
     this.logger = container.resolve<Logger>("logger");
     this.port = config.get("server.port");
     this.koa = new Koa();
