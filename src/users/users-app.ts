@@ -5,6 +5,7 @@ import { container } from "./modules/dependency-injection";
 import { usersRouter } from "./api/routes";
 import { config } from "./modules/config";
 import {
+  errorHandlerMiddleware,
   requestContainerMiddleware,
   requestContextMiddleware,
   requestLoggerMiddleware,
@@ -28,6 +29,7 @@ export class UsersApp {
     this.koa.use(requestContextMiddleware);
     this.koa.use(sentryScopeMiddleware);
     this.koa.use(requestLoggerMiddleware);
+    this.koa.use(errorHandlerMiddleware);
     this.koa.use(usersRouter.middleware());
   }
 
