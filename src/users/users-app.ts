@@ -4,6 +4,11 @@ import { Logger } from "./business/logger";
 import { container } from "./modules/dependency-injection";
 import { usersRouter } from "./api/routes";
 import { config } from "./modules/config";
+import {
+  requestContainerMiddleware,
+  requestContextMiddleware,
+  requestLoggerMiddleware,
+} from "./api/middlewares";
 
 export class UsersApp {
   private koa: Koa;
@@ -16,6 +21,9 @@ export class UsersApp {
     this.port = config.get("server.port");
     this.koa = new Koa();
 
+    this.koa.use(requestContainerMiddleware);
+    this.koa.use(requestContextMiddleware);
+    this.koa.use(requestLoggerMiddleware);
     this.koa.use(usersRouter.middleware());
   }
 

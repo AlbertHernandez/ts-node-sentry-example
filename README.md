@@ -1,8 +1,8 @@
 <h1 align="center">🚀</h1>
-<h3 align="center">TS Node Logger with Request Id Example</h3>
+<h3 align="center">TS Node Sentry Example</h3>
 
 <p align="center">
- Example of a basic Koa application where we are configuring a request id in http requests and configure a logger to log that identifier inside of the transaction.
+ Example of a basic typescript backend application that has configured sentry for tracking errors
 </p>
 
 ## Table of Contents
