@@ -1,5 +1,5 @@
 import pino, { Logger as PinoLoggerType } from "pino";
-import { Level, Logger, LogMessage } from "./logger";
+import { Level, Logger, LogMessage } from "../domain/logger";
 
 export class PinoLogger implements Logger {
   private readonly logger: PinoLoggerType;

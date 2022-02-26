@@ -1,7 +1,7 @@
 import { Middleware } from "koa";
 import { AwilixContainer } from "awilix";
-import { Logger } from "../../business/logger";
-import { ErrorTracker } from "../../business/error-tracker";
+import { Logger } from "../../domain/logger";
+import { ErrorTracker } from "../../domain/error-tracker";
 
 export const errorHandlerMiddleware: Middleware = async (ctx, next) => {
   const scopedContainer: AwilixContainer = ctx.state.container;

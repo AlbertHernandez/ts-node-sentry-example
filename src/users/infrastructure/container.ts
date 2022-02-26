@@ -1,8 +1,9 @@
 import * as Awilix from "awilix";
-import { PinoLogger } from "../../business/logger";
-import { config } from "../config";
-import UsersPostController from "../../api/controllers/users-post-controller";
-import { SentryErrorTracker } from "../../business/error-tracker";
+import { config } from "./config";
+import UsersPostController from "../backend/controllers/users-post-controller";
+import { SentryErrorTracker } from "./sentry-error-tracker";
+import { PinoLogger } from "./pino-logger";
+import { UserCreator } from "../application/user-creator";
 
 const container = Awilix.createContainer({
   injectionMode: Awilix.InjectionMode.PROXY,
@@ -10,6 +11,7 @@ const container = Awilix.createContainer({
 
 container.register({
   usersPostController: Awilix.asClass(UsersPostController),
+  userCreator: Awilix.asClass(UserCreator),
   errorTracker: Awilix.asClass(SentryErrorTracker),
   logger: Awilix.asClass(PinoLogger).inject(() => {
     return {

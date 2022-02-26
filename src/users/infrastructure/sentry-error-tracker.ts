@@ -1,6 +1,6 @@
-import { ErrorTracker } from "./error-tracker";
+import { ErrorTracker } from "../domain/error-tracker";
 import * as Sentry from "@sentry/node";
-import { config } from "../../modules/config";
+import { config } from "./config";
 
 Sentry.init({
   dsn: config.get("sentry.dsn"),

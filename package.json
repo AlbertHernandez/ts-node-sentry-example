@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "dev": "ts-node-dev --ignore-watch node_modules src/users/start.ts | pino-pretty -c --messageKey message --translateTime SYS:standard",
+    "dev": "ts-node-dev --ignore-watch node_modules src/users/backend/start.ts | pino-pretty -c --messageKey message --translateTime SYS:standard",
     "prepare": "husky install",
     "lint": "eslint --ignore-path .gitignore . --ext .js,.ts",
     "lint:fix": "npm run lint -- --fix",

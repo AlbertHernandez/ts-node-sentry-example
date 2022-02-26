@@ -1,6 +1,6 @@
 import { Middleware } from "koa";
 import { AwilixContainer, asValue } from "awilix";
-import { Logger } from "../../business/logger";
+import { Logger } from "../../domain/logger";
 
 export const requestLoggerMiddleware: Middleware = async (ctx, next) => {
   const scopedContainer: AwilixContainer = ctx.state.container;

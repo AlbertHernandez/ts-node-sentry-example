@@ -1,5 +1,5 @@
 import { Middleware } from "koa";
-import { UuidGenerator } from "../../business/uuid-generator";
+import { UuidGenerator } from "../../domain/uuid-generator";
 import { AwilixContainer, asValue } from "awilix";
 
 export const requestContextMiddleware: Middleware = async (ctx, next) => {

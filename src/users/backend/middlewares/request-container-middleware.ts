@@ -1,5 +1,5 @@
 import { Middleware } from "koa";
-import { container } from "../../modules/dependency-injection";
+import { container } from "../../infrastructure/container";
 
 export const requestContainerMiddleware: Middleware = async (ctx, next) => {
   ctx.state.container = container.createScope();

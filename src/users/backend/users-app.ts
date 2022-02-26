@@ -1,17 +1,17 @@
 import Koa from "koa";
 import http from "http";
-import { Logger } from "./business/logger";
-import { container } from "./modules/dependency-injection";
-import { usersRouter } from "./api/routes";
-import { config } from "./modules/config";
+import { usersRouter } from "./routes";
+import { config } from "../infrastructure/config";
 import {
   errorHandlerMiddleware,
   requestContainerMiddleware,
   requestContextMiddleware,
   requestLoggerMiddleware,
   sentryScopeMiddleware,
-} from "./api/middlewares";
+} from "./middlewares";
 import bodyParser from "koa-bodyparser";
+import { Logger } from "../domain/logger";
+import { container } from "../infrastructure/container";
 
 export class UsersApp {
   private koa: Koa;

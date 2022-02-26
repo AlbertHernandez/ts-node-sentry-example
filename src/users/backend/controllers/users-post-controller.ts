@@ -1,24 +1,23 @@
 import Koa from "koa";
 import { Controller } from "./controller";
-import { Logger } from "../../business/logger";
-import { User } from "../../business/models";
-import { UuidGenerator } from "../../business/uuid-generator";
+import { Logger } from "../../domain/logger";
+import { UserCreator } from "../../application/user-creator";
 
 export default class UsersPostController implements Controller {
   #logger;
+  #userCreator;
 
-  constructor(dependencies: { logger: Logger }) {
+  constructor(dependencies: { logger: Logger; userCreator: UserCreator }) {
     this.#logger = dependencies.logger;
+    this.#userCreator = dependencies.userCreator;
   }
 
   async run(ctx: Koa.Context) {
     this.#logger.debug("Received a request for creating a user");
 
-    const user = new User({
-      age: ctx.request.body.age,
-      name: ctx.request.body.name,
-      id: UuidGenerator.generateUuid(),
-    });
+    const { name, age } = ctx.request.body as { name: string; age: number };
+
+    const user = this.#userCreator.run(name, age);
 
     this.#logger.debug("Finalized request for creating a user");
 
