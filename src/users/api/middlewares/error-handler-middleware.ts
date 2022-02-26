@@ -10,6 +10,8 @@ export const errorHandlerMiddleware: Middleware = async (ctx, next) => {
   try {
     await next();
   } catch (error) {
+    ctx.status = 500;
+    ctx.body = "Internal Server Error";
     if (error instanceof Error) {
       logger.error({
         message: error.message,

@@ -4,6 +4,7 @@ import { config } from "../config";
 import UsersGetController from "../../api/controllers/users-get-controller";
 import { InMemoryUserRepository } from "../../business/user-repository";
 import { UserFinder } from "../../business/user-finder";
+import UsersPostController from "../../api/controllers/users-post-controller";
 
 const container = Awilix.createContainer({
   injectionMode: Awilix.InjectionMode.PROXY,
@@ -11,6 +12,7 @@ const container = Awilix.createContainer({
 
 container.register({
   usersGetController: Awilix.asClass(UsersGetController),
+  usersPostController: Awilix.asClass(UsersPostController),
   userRepository: Awilix.asClass(InMemoryUserRepository),
   userFinder: Awilix.asClass(UserFinder),
   logger: Awilix.asClass(PinoLogger).inject(() => {

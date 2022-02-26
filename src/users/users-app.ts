@@ -12,6 +12,7 @@ import {
   sentryScopeMiddleware,
 } from "./api/middlewares";
 import { initSentry } from "./modules/sentry/init-sentry";
+import bodyParser from "koa-bodyparser";
 
 export class UsersApp {
   private koa: Koa;
@@ -25,6 +26,7 @@ export class UsersApp {
     this.port = config.get("server.port");
     this.koa = new Koa();
 
+    this.koa.use(bodyParser());
     this.koa.use(requestContainerMiddleware);
     this.koa.use(requestContextMiddleware);
     this.koa.use(sentryScopeMiddleware);
