@@ -11,6 +11,12 @@ const config = convict({
       default: 3000,
       env: "PORT",
     },
+    name: {
+      doc: "Name of the server",
+      format: String,
+      default: "Sentry Example App",
+      env: "SERVER_NAME",
+    },
   },
   env: {
     doc: "The application environment.",
@@ -30,6 +36,20 @@ const config = convict({
       format: "Boolean",
       default: true,
       env: "LOGGER_ENABLE",
+    },
+  },
+  sentry: {
+    dsn: {
+      doc: "Sentry dsn",
+      format: String,
+      env: "SENTRY_DSN",
+      default: "",
+    },
+    enabled: {
+      doc: "Flag that indicates if sentry is enabled",
+      format: "Boolean",
+      env: "IS_SENTRY_ENABLED",
+      default: false,
     },
   },
 });

@@ -8,7 +8,9 @@ import {
   requestContainerMiddleware,
   requestContextMiddleware,
   requestLoggerMiddleware,
+  sentryScopeMiddleware,
 } from "./api/middlewares";
+import { initSentry } from "./modules/sentry/init-sentry";
 
 export class UsersApp {
   private koa: Koa;
@@ -17,12 +19,14 @@ export class UsersApp {
   httpServer?: http.Server;
 
   constructor() {
+    initSentry();
     this.logger = container.resolve<Logger>("logger");
     this.port = config.get("server.port");
     this.koa = new Koa();
 
     this.koa.use(requestContainerMiddleware);
     this.koa.use(requestContextMiddleware);
+    this.koa.use(sentryScopeMiddleware);
     this.koa.use(requestLoggerMiddleware);
     this.koa.use(usersRouter.middleware());
   }
